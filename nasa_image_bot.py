@@ -29,7 +29,7 @@ def tweet_image(url, message):
         api.update_with_media(filename, status=message)
         os.remove(filename)
     else:
-        #print("Unable to download image")
+        pass#print("Unable to download image")
 
 while True:
     try:
@@ -45,4 +45,5 @@ while True:
         keepgoing=0
         time.sleep(60*15)
     except:
+        pass
         #print("Image not found!")
