@@ -29,16 +29,17 @@ def tweet_image(url, message):
         os.remove(filename)
     else:
         pass
-
-try:
-    image_num=str(random.randint(1,30000)).zfill(5)
-    url = "https://photojournal.jpl.nasa.gov/jpegMod/PIA"+image_num+"_modest.jpg"
-    pageurl="https://photojournal.jpl.nasa.gov/catalog/PIA"+image_num
-    page=requests.get(pageurl)
-    content=page.content.decode()
-    caption=content.split('<b>')[1].split('</b>')[0].split(': ')[1]
-    message = caption+' '+pageurl
-    tweet_image(url,message)
-
-except:
-    pass
+    keeptrying=True
+    while keeptrying is True:
+        try:
+            image_num=str(random.randint(1,30000)).zfill(5)
+            url = "https://photojournal.jpl.nasa.gov/jpegMod/PIA"+image_num+"_modest.jpg"
+            pageurl="https://photojournal.jpl.nasa.gov/catalog/PIA"+image_num
+            page=requests.get(pageurl)
+            content=page.content.decode()
+            caption=content.split('<b>')[1].split('</b>')[0].split(': ')[1]
+            message = caption+' '+pageurl
+            tweet_image(url,message)
+            keeptrying=False
+        except:
+            keeptrying=True
